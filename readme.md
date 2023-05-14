@@ -2,8 +2,8 @@
 
 ## Installation
 - Use the command `npm` to install the dependencies
-- Use the command `npm prisma db seed` to seed the database
-- You can use `npm prisma migrate reset` to reset the database and seed it again
+- Use the command `npx prisma db seed` to seed the database
+- You can use `npx prisma migrate reset` to reset the database and seed it again
 
 ## Usage
 - On the url `http://localhost:3000/graphql` you can access the GraphQL playground
