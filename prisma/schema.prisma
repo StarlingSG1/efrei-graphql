@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Eleve {
+  id        Int      @id @default(autoincrement())
+  firstname String
+  lastname  String
+  groupeId  Int
+  Groupe    Groupe   @relation(fields: [groupeId], references: [id], onDelete: Cascade)
+  Note      Note[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Groupe {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  promotionId Int
+  Promotion   Promotion @relation(fields: [promotionId], references: [id], onDelete: Cascade)
+  Eleve       Eleve[]
+  Cours       Cours[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Promotion {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  Groupe    Groupe[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Salle {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  Cours     Cours[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Cours {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  startTime   DateTime
+  endTime     DateTime
+  matiereId   Int
+  Matiere     Matiere   @relation(fields: [matiereId], references: [id])
+  formateurId Int
+  Formateur   Formateur @relation(fields: [formateurId], references: [id])
+  salleId     Int
+  Salle       Salle     @relation(fields: [salleId], references: [id])
+  groupeId    Int
+  Groupe      Groupe    @relation(fields: [groupeId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Matiere {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  Cours     Cours[]
+  Note      Note[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Formateur {
+  id        Int      @id @default(autoincrement())
+  firstname String
+  lastname  String
+  Cours     Cours[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Note {
+  id        Int      @id @default(autoincrement())
+  note      Int
+  eleveId   Int
+  Eleve     Eleve    @relation(fields: [eleveId], references: [id], onDelete: Cascade)
+  matiereId Int
+  Matiere   Matiere  @relation(fields: [matiereId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

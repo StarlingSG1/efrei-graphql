@@ -1,0 +1,214 @@
+query getEleve{
+  getEleve{
+    id,
+    firstname,
+    lastname,
+    Groupe{
+      name
+    }
+    Note{
+      id,
+      note
+      Matiere{
+        name
+      }
+    }
+  }
+}
+
+query getOneEleve{
+  getOneEleve(id: 1){
+    id,
+    firstname,
+    lastname
+  }
+}
+
+mutation createEleve{
+  createEleve(firstname: "John", lastname: "Doe", groupeId: 1){
+    id,
+    firstname,
+    lastname
+  }
+}
+
+mutation updateEleve{
+  updateEleve(id: 3,firstname:"Jane",lastname: "Die", groupeId: 1){
+    id,
+    firstname,
+    lastname
+  }
+}
+
+mutation deleteEleve {
+  deleteEleve(id: 3){
+    id
+  }
+}
+
+query getCours{
+  getCours{
+    name,
+    Matiere{
+      name
+    },
+    Salle{
+      name,
+    },
+    Groupe{
+      name
+    }
+  }
+}
+
+query getOneCours{
+  getOneCours(id: 1){
+    name,
+    Matiere{
+      name
+    },
+    Salle{
+      name,
+    },
+    Groupe{
+      name
+    }
+  }
+}
+
+query getFormateurCours{
+  getFormateurCours(formateurId: 2){
+    name
+  }
+}
+
+query getSalleCours{
+  getSalleCours(salleId: 2){
+    name,
+    Salle{
+      name
+    }
+  }
+}
+
+mutation createCours{
+  createCours(name: "Est-ce que c'est bon pour vous ? ",startTime: "2023-05-01T07:00:00.000Z", endTime: "2023-05-01T08:00:00.000Z", matiereId: 1, salleId: 1, groupeId:1, formateurId: 1){
+    name
+  }
+}
+
+mutation updateOneCours{
+  updateCours(id: 6,name: "Est-ce que c'est bon pour vous ? ",startTime: "2023-05-01T07:00:00.000Z", endTime: "2023-05-01T08:00:00.000Z", matiereId: 1, salleId: 1, groupeId:1, formateurId: 1){
+    name
+  }
+}
+
+mutation deleteCours{
+  deleteCours(id: 1){
+    name
+  }
+}
+
+query getFormateur{
+  getFormateur{
+    id,
+    firstname,
+    lastname
+  }
+}
+
+query getOneFormateur{
+  getOneFormateur(id: 2){
+    id,
+    firstname,
+    lastname
+  }
+}
+
+mutation createFormateur{
+  createFormateur(firstname: "Jérémie", lastname: "Barrière"){
+    id
+  }
+}
+
+query getGroupe{
+  getGroupe{
+    id,
+    name
+  }
+}
+
+query getMatiere{
+  getMatiere{
+    name
+  }
+}
+
+query getNote{
+  getNote{
+    note,
+    Eleve{
+      firstname,
+      lastname
+    },
+    Matiere{
+      name
+    }
+  }
+}
+
+query getNoteById{
+  getNoteById(matiereId: 1){
+    note,
+    Eleve{
+      id,
+      firstname,
+      lastname
+    }
+  }
+}
+
+mutation createNote{
+  createNote(note:18, eleveId: 1, matiereId: 1){
+    note
+  }
+}
+
+mutation updateNote{
+  updateNote(id: 1, note: 14){
+    note
+  }
+}
+
+mutation createPromotion{
+  createPromotion(name: "Origine du droit") {
+    id
+  }
+}
+
+query getSalle{
+  getSalle{
+    id,
+    name
+  }
+}
+
+query getOneSalle{
+  getOneSalle(id: 1){
+    name
+  }
+}
+
+mutation createSalle{
+  createSalle(name: "A002"){
+    id,
+    name
+  }
+}
+
+mutation updateSalle{
+  updateSalle(id: 6, name:"B123"){
+    id,
+    name
+  }
+}
