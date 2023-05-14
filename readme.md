@@ -1,7 +1,7 @@
 # efrei-graphql
 
 ## Installation
-- Use the command `npm` to install the dependencies
+- Use the command `npm i` to install the dependencies
 - Use the command `npx prisma db seed` to seed the database
 - You can use `npx prisma migrate reset` to reset the database and seed it again
 
